@@ -1,0 +1,13 @@
+# Keep the build context small and the image reproducible.
+data/processed/*
+notebooks/
+tests/
+docs/
+models/*
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+.git/
+README.md

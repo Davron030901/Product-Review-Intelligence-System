@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    /* Faint sorting-grid texture: the surface reviews get laid out on. */
+    background-image:
+      linear-gradient(to right, rgba(22, 26, 23, 0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(22, 26, 23, 0.035) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  /* Focus is never invisible, and never only a colour change. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-pine ring-offset-2 ring-offset-paper rounded-sm;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-card border border-line rounded-lg shadow-card;
+  }
+  .eyebrow {
+    @apply font-mono text-[11px] uppercase tracking-[0.16em] text-slate;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 min-h-[44px] px-5 rounded-md
+           font-medium transition-colors disabled:opacity-45 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply btn bg-pine text-paper hover:bg-pine-deep;
+  }
+  .btn-ghost {
+    @apply btn border border-line bg-transparent text-ink hover:bg-ink/5;
+  }
+  /* Shipping-label silhouette: a notch cut from the left edge. */
+  .tag-notch {
+    clip-path: polygon(0 50%, 9px 0, 100% 0, 100% 100%, 9px 100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,5 @@
+# Optional: only needed for src/training/train_transformer.py
+# Install the torch build that matches your hardware -- see pytorch.org
+-r requirements.txt
+torch==2.5.1
+transformers==4.47.1

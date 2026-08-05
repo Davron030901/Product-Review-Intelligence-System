@@ -1,0 +1,230 @@
+{
+  "sentiment": {
+    "accuracy": 0.9844,
+    "macro_f1": 0.977,
+    "per_class": {
+      "negative": {
+        "precision": 1.0,
+        "recall": 0.9802,
+        "f1": 0.99,
+        "support": 405
+      },
+      "neutral": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 0
+      },
+      "positive": {
+        "precision": 0.9304,
+        "recall": 1.0,
+        "f1": 0.964,
+        "support": 107
+      }
+    },
+    "confusion_matrix": {
+      "labels": [
+        "negative",
+        "neutral",
+        "positive"
+      ],
+      "matrix": [
+        [
+          397,
+          0,
+          8
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          107
+        ]
+      ]
+    }
+  },
+  "sentiment_val": {
+    "accuracy": 0.9882,
+    "macro_f1": 0.9824,
+    "per_class": {
+      "negative": {
+        "precision": 1.0,
+        "recall": 0.9851,
+        "f1": 0.9925,
+        "support": 402
+      },
+      "neutral": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 0
+      },
+      "positive": {
+        "precision": 0.9459,
+        "recall": 1.0,
+        "f1": 0.9722,
+        "support": 105
+      }
+    },
+    "confusion_matrix": {
+      "labels": [
+        "negative",
+        "neutral",
+        "positive"
+      ],
+      "matrix": [
+        [
+          396,
+          0,
+          6
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          105
+        ]
+      ]
+    }
+  },
+  "issues_per_label": {
+    "delivery": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "average_precision": 1.0,
+      "support": 187,
+      "rare": false
+    },
+    "packaging": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "average_precision": 1.0,
+      "support": 156,
+      "rare": false
+    },
+    "quality": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "average_precision": 1.0,
+      "support": 144,
+      "rare": false
+    },
+    "defect": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "average_precision": 1.0,
+      "support": 125,
+      "rare": false
+    },
+    "price": {
+      "precision": 1.0,
+      "recall": 0.9923,
+      "f1": 0.9961,
+      "average_precision": 1.0,
+      "support": 130,
+      "rare": false
+    },
+    "service": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "average_precision": 1.0,
+      "support": 123,
+      "rare": false
+    },
+    "fit": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "average_precision": 1.0,
+      "support": 115,
+      "rare": false
+    },
+    "other": {
+      "precision": 0.4167,
+      "recall": 1.0,
+      "f1": 0.5882,
+      "average_precision": 1.0,
+      "support": 5,
+      "rare": true
+    }
+  },
+  "issues_summary": {
+    "threshold": 0.6,
+    "micro_f1": 0.996,
+    "macro_f1": 0.948,
+    "macro_f1_excluding_rare": 0.9994,
+    "rare_labels": [
+      "other"
+    ],
+    "exact_match_ratio": 0.9844,
+    "mean_labels_true": 1.924,
+    "mean_labels_pred": 1.936
+  },
+  "threshold_sweep_on_val": [
+    {
+      "threshold": 0.2,
+      "macro_f1": 0.9371,
+      "micro_f1": 0.9916
+    },
+    {
+      "threshold": 0.25,
+      "macro_f1": 0.9375,
+      "micro_f1": 0.9921
+    },
+    {
+      "threshold": 0.3,
+      "macro_f1": 0.9464,
+      "micro_f1": 0.9941
+    },
+    {
+      "threshold": 0.35,
+      "macro_f1": 0.9491,
+      "micro_f1": 0.9945
+    },
+    {
+      "threshold": 0.4,
+      "macro_f1": 0.9491,
+      "micro_f1": 0.9945
+    },
+    {
+      "threshold": 0.5,
+      "macro_f1": 0.9583,
+      "micro_f1": 0.996
+    },
+    {
+      "threshold": 0.6,
+      "macro_f1": 0.9699,
+      "micro_f1": 0.997
+    }
+  ],
+  "selected_threshold": 0.6,
+  "note": "Threshold selected on validation, metrics reported on test. Rare labels (support < 25) are flagged and excluded from macro_f1_excluding_rare.",
+  "model": "baseline-tfidf-logreg",
+  "train_seconds": 0.33,
+  "leakage_check": {
+    "shared_products": 0,
+    "shared_exact_texts": 0,
+    "train_rows": 2421,
+    "test_rows": 512,
+    "clean": true
+  },
+  "rows": {
+    "train": 2421,
+    "val": 507,
+    "test": 512
+  },
+  "dropped_issue_labels": []
+}

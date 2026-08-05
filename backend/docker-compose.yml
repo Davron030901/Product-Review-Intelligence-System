@@ -1,0 +1,10 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONPATH=/app
+      - PORT=8000
+      # Mirror what you set on Render, so local and deployed behave the same.
+      - ALLOWED_ORIGINS=http://localhost:5173

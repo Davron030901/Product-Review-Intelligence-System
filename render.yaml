@@ -1,0 +1,22 @@
+# Render Blueprint. Commit this at the repo root, then in Render:
+#   New -> Blueprint -> pick this repo.
+# It creates the service with these settings already filled in.
+services:
+  - type: web
+    name: review-intel-api
+    runtime: docker
+    plan: free
+    region: frankfurt          # oregon | frankfurt | singapore | ohio | virginia
+    rootDir: backend           # the Dockerfile lives in backend/, not the repo root
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      # Set this to your Vercel URL after the frontend is deployed.
+      - key: ALLOWED_ORIGINS
+        sync: false
+      # Optional: allows every Vercel preview deployment of your project.
+      - key: ALLOWED_ORIGIN_REGEX
+        sync: false
+      - key: PYTHONPATH
+        value: /app
