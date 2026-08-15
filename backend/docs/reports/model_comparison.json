@@ -1,0 +1,20 @@
+{
+  "dataset_sha": "f2684cbfe4af8666",
+  "comparable_runs": 1,
+  "ignored_runs_on_other_data": 0,
+  "baseline": {
+    "run_id": "b702a59af728",
+    "name": "baseline-tfidf-logreg",
+    "sentiment_macro_f1": 0.6513,
+    "sentiment_accuracy": 0.9844,
+    "issue_macro_f1": 1.0,
+    "issue_micro_f1": 1.0,
+    "dataset_sha": "f2684cbfe4af8666",
+    "rows": 3440,
+    "timestamp": "2026-08-13T02:12:33.989184+00:00"
+  },
+  "transformer": null,
+  "issue_macro_f1_gain": null,
+  "meaningful_gain_threshold": 0.02,
+  "verdict": "Only the baseline has been trained. Run `python -m src.training.train_transformer` to compare, or deploy the baseline and say so plainly."
+}

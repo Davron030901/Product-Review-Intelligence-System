@@ -25,6 +25,9 @@ import pandas as pd
 from src.config import (DATA_PROCESSED, ISSUE_LABELS, MODELS_DIR, RANDOM_SEED,
                         REPORTS_DIR, SENTIMENT_LABELS)
 from src.data.splits import group_split, leakage_check
+from src.training.evaluate import evaluate_all
+from src.training.tracking import (dataset_fingerprint, log_run,
+                                   summarise_for_tracking)
 
 ISSUE_COLS = [f"issue_{i}" for i in ISSUE_LABELS]
 DEFAULT_MODEL = "distilbert-base-uncased"
@@ -179,9 +182,85 @@ def train(epochs=3, batch_size=16, lr=2e-5, max_len=192, base_model=DEFAULT_MODE
         "history": history, "train_seconds": round(time.time() - t0, 1),
         "leakage_check": leak,
     }, indent=2))
+
+    # Score on held-out test with the same evaluator the baseline uses, so the
+    # two are directly comparable rather than "roughly similar numbers".
+    report = _evaluate_on_test(model, tokenizer, val_df, test_df, device, max_len)
+    report.update({"model": "transformer-distilbert-multitask",
+                   "train_seconds": round(time.time() - t0, 1),
+                   "leakage_check": leak, "history": history})
+
+    run = log_run(
+        name="transformer-distilbert-multitask",
+        params={"base_model": base_model, "epochs": epochs, "lr": lr,
+                "batch_size": batch_size, "max_len": max_len, "seed": seed,
+                "issue_loss_weight": issue_loss_weight},
+        metrics=summarise_for_tracking(report),
+        dataset=dataset_fingerprint(DATA_PROCESSED / "dataset.csv"),
+        artefacts=[str(out_dir / "model.pt")],
+        notes="Shared encoder, two heads. Compare via src.training.compare_models.",
+    )
+    report["run_id"] = run["run_id"]
+    (REPORTS_DIR / "transformer_report.json").write_text(json.dumps(report, indent=2))
+
+    print(f"[train] run_id={run['run_id']}")
     print(f"[train] saved -> {out_dir}")
-    print("[train] now compare against docs/reports/baseline_report.json before "
-          "claiming the transformer is better.")
+    print("[train] now run: python -m src.training.compare_models")
+
+
+class _TorchArtefact:
+    """Adapts the torch model to the sklearn-shaped interface evaluate.py wants,
+    so both models are scored by exactly the same code."""
+
+    def __init__(self, model, tokenizer, device, max_len, labels, sentiment_labels):
+        self.model, self.tokenizer = model, tokenizer
+        self.device, self.max_len = device, max_len
+        self.labels, self.sentiment_labels = labels, sentiment_labels
+
+    def _forward(self, texts):
+        import torch
+        outs_s, outs_i = [], []
+        self.model.eval()
+        with torch.no_grad():
+            for i in range(0, len(texts), 32):
+                enc = self.tokenizer(list(texts[i:i + 32]), truncation=True,
+                                     max_length=self.max_len, padding=True,
+                                     return_tensors="pt")
+                s, iss = self.model(enc["input_ids"].to(self.device),
+                                    enc["attention_mask"].to(self.device))
+                outs_s.append(torch.softmax(s, -1).cpu())
+                outs_i.append(torch.sigmoid(iss).cpu())
+        return torch.cat(outs_s).numpy(), torch.cat(outs_i).numpy()
+
+
+def _evaluate_on_test(model, tokenizer, val_df, test_df, device, max_len):
+    """Wrap the torch model so evaluate_all can score it unchanged."""
+    import numpy as np
+
+    class SentimentPipe:
+        def __init__(self, adapter):
+            self.adapter = adapter
+            self.named_steps = {"clf": type("C", (), {
+                "classes_": np.array(SENTIMENT_LABELS)})()}
+
+        def predict(self, X):
+            probs, _ = self.adapter._forward(list(X))
+            return np.array([SENTIMENT_LABELS[i] for i in probs.argmax(1)])
+
+    class IssuePipe:
+        def __init__(self, adapter):
+            self.adapter = adapter
+
+        def predict_proba(self, X):
+            _, probs = self.adapter._forward(list(X))
+            return probs
+
+    adapter = _TorchArtefact(model, tokenizer, device, max_len,
+                             ISSUE_LABELS, SENTIMENT_LABELS)
+    artefact = {"sentiment_pipe": SentimentPipe(adapter),
+                "issue_pipe": IssuePipe(adapter),
+                "issue_labels": ISSUE_LABELS}
+    return evaluate_all(artefact, val_df, test_df)
 
 
 if __name__ == "__main__":

@@ -24,6 +24,8 @@ from src.config import (DATA_PROCESSED, ISSUE_LABELS, MODELS_DIR, RANDOM_SEED,
                         REPORTS_DIR)
 from src.data.splits import group_split, leakage_check
 from src.training.evaluate import evaluate_all
+from src.training.tracking import (dataset_fingerprint, log_run,
+                                   summarise_for_tracking)
 
 ISSUE_COLS = [f"issue_{i}" for i in ISSUE_LABELS]
 
@@ -96,6 +98,23 @@ def train(dataset_path=None, out_dir=None, seed: int = RANDOM_SEED) -> dict:
         "dropped_issue_labels": dropped,
     })
     (REPORTS_DIR / "baseline_report.json").write_text(json.dumps(report, indent=2))
+
+    run = log_run(
+        name="baseline-tfidf-logreg",
+        params={"vectoriser": "tfidf 1-2gram, min_df=2, sublinear",
+                "classifier": "LogisticRegression(class_weight=balanced)",
+                "issue_strategy": "one-vs-rest", "seed": seed,
+                "selected_threshold": report["selected_threshold"]},
+        metrics=summarise_for_tracking(report),
+        dataset=dataset_fingerprint(dataset_path),
+        artefacts=[str(out_path)],
+        notes="Reference baseline. Any other model must beat these numbers on "
+              "the same dataset hash to be worth deploying.",
+    )
+    report["run_id"] = run["run_id"]
+    (REPORTS_DIR / "baseline_report.json").write_text(json.dumps(report, indent=2))
+
+    print(f"[train] run_id={run['run_id']}")
     print(f"[train] saved model -> {out_path}")
     print(f"[train] saved report -> {REPORTS_DIR / 'baseline_report.json'}")
     print(json.dumps({k: report[k] for k in ("sentiment", "issues_summary")}, indent=2))

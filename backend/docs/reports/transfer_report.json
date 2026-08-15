@@ -1,0 +1,427 @@
+{
+  "bootstrap_data": true,
+  "results": [
+    {
+      "category": "Beauty",
+      "skipped": false,
+      "rows": {
+        "train": 1910,
+        "in_domain_test": 414,
+        "held_out": 701
+      },
+      "in_domain": {
+        "sentiment_macro_f1": 0.6509,
+        "sentiment_accuracy": 0.9831,
+        "issue_macro_f1": 1.0,
+        "issue_micro_f1": 1.0
+      },
+      "held_out": {
+        "sentiment_macro_f1": 0.6575,
+        "sentiment_accuracy": 0.99,
+        "issue_macro_f1": 1.0,
+        "issue_micro_f1": 1.0
+      },
+      "drop": {
+        "sentiment_macro_f1": -0.0066,
+        "issue_macro_f1": 0.0
+      },
+      "held_out_per_label": {
+        "delivery": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 265,
+          "rare": false
+        },
+        "packaging": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 233,
+          "rare": false
+        },
+        "quality": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 175,
+          "rare": false
+        },
+        "defect": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 191,
+          "rare": false
+        },
+        "price": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 184,
+          "rare": false
+        },
+        "service": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 143,
+          "rare": false
+        },
+        "fit": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 184,
+          "rare": false
+        }
+      }
+    },
+    {
+      "category": "Dresses",
+      "skipped": false,
+      "rows": {
+        "train": 1905,
+        "in_domain_test": 411,
+        "held_out": 704
+      },
+      "in_domain": {
+        "sentiment_macro_f1": 0.6452,
+        "sentiment_accuracy": 0.9781,
+        "issue_macro_f1": 1.0,
+        "issue_micro_f1": 1.0
+      },
+      "held_out": {
+        "sentiment_macro_f1": 0.6455,
+        "sentiment_accuracy": 0.9773,
+        "issue_macro_f1": 1.0,
+        "issue_micro_f1": 1.0
+      },
+      "drop": {
+        "sentiment_macro_f1": -0.0003,
+        "issue_macro_f1": 0.0
+      },
+      "held_out_per_label": {
+        "delivery": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 244,
+          "rare": false
+        },
+        "packaging": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 240,
+          "rare": false
+        },
+        "quality": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 183,
+          "rare": false
+        },
+        "defect": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 187,
+          "rare": false
+        },
+        "price": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 180,
+          "rare": false
+        },
+        "service": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 136,
+          "rare": false
+        },
+        "fit": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 219,
+          "rare": false
+        }
+      }
+    },
+    {
+      "category": "Electronics",
+      "skipped": false,
+      "rows": {
+        "train": 1929,
+        "in_domain_test": 421,
+        "held_out": 665
+      },
+      "in_domain": {
+        "sentiment_macro_f1": 0.6553,
+        "sentiment_accuracy": 0.9881,
+        "issue_macro_f1": 1.0,
+        "issue_micro_f1": 1.0
+      },
+      "held_out": {
+        "sentiment_macro_f1": 0.8121,
+        "sentiment_accuracy": 0.9789,
+        "issue_macro_f1": 0.9995,
+        "issue_micro_f1": 0.9996
+      },
+      "drop": {
+        "sentiment_macro_f1": -0.1568,
+        "issue_macro_f1": 0.0005
+      },
+      "held_out_per_label": {
+        "delivery": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 219,
+          "rare": false
+        },
+        "packaging": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 206,
+          "rare": false
+        },
+        "quality": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 174,
+          "rare": false
+        },
+        "defect": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 171,
+          "rare": false
+        },
+        "price": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 185,
+          "rare": false
+        },
+        "service": {
+          "precision": 0.993,
+          "recall": 1.0,
+          "f1": 0.9965,
+          "average_precision": 1.0,
+          "support": 141,
+          "rare": false
+        },
+        "fit": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 198,
+          "rare": false
+        }
+      }
+    },
+    {
+      "category": "Home",
+      "skipped": false,
+      "rows": {
+        "train": 1950,
+        "in_domain_test": 405,
+        "held_out": 670
+      },
+      "in_domain": {
+        "sentiment_macro_f1": 0.6525,
+        "sentiment_accuracy": 0.9852,
+        "issue_macro_f1": 1.0,
+        "issue_micro_f1": 1.0
+      },
+      "held_out": {
+        "sentiment_macro_f1": 0.9856,
+        "sentiment_accuracy": 0.9866,
+        "issue_macro_f1": 1.0,
+        "issue_micro_f1": 1.0
+      },
+      "drop": {
+        "sentiment_macro_f1": -0.3331,
+        "issue_macro_f1": 0.0
+      },
+      "held_out_per_label": {
+        "delivery": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 241,
+          "rare": false
+        },
+        "packaging": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 192,
+          "rare": false
+        },
+        "quality": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 192,
+          "rare": false
+        },
+        "defect": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 179,
+          "rare": false
+        },
+        "price": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 191,
+          "rare": false
+        },
+        "service": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 154,
+          "rare": false
+        },
+        "fit": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 196,
+          "rare": false
+        }
+      }
+    },
+    {
+      "category": "Tops",
+      "skipped": false,
+      "rows": {
+        "train": 1925,
+        "in_domain_test": 385,
+        "held_out": 700
+      },
+      "in_domain": {
+        "sentiment_macro_f1": 0.6512,
+        "sentiment_accuracy": 0.9844,
+        "issue_macro_f1": 1.0,
+        "issue_micro_f1": 1.0
+      },
+      "held_out": {
+        "sentiment_macro_f1": 0.6534,
+        "sentiment_accuracy": 0.9857,
+        "issue_macro_f1": 1.0,
+        "issue_micro_f1": 1.0
+      },
+      "drop": {
+        "sentiment_macro_f1": -0.0022,
+        "issue_macro_f1": 0.0
+      },
+      "held_out_per_label": {
+        "delivery": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 268,
+          "rare": false
+        },
+        "packaging": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 197,
+          "rare": false
+        },
+        "quality": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 189,
+          "rare": false
+        },
+        "defect": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 197,
+          "rare": false
+        },
+        "price": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 179,
+          "rare": false
+        },
+        "service": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 156,
+          "rare": false
+        },
+        "fit": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "average_precision": 1.0,
+          "support": 189,
+          "rare": false
+        }
+      }
+    }
+  ],
+  "summary": {
+    "categories_evaluated": 5,
+    "mean_sentiment_drop": -0.0998,
+    "mean_issue_drop": 0.0001,
+    "worst_category": "Electronics"
+  },
+  "note": "Each row: trained on all other categories, evaluated on the named one. 'drop' is in-domain minus held-out, so positive means the model got worse when moved."
+}

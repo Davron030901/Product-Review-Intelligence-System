@@ -1,11 +1,11 @@
 # Testing
 
-328 tests across three layers: 210 backend (pytest), 108 frontend (vitest), 10 end-to-end (Playwright).
+363 tests across three layers: 245 backend (pytest), 108 frontend (vitest), 10 end-to-end (Playwright).
 
 ## Running them
 
 ```bash
-# Backend — 210 tests, ~15s
+# Backend — 245 tests, ~10s
 cd backend
 python -m pytest tests -q
 python -m pytest tests -q --cov=src --cov-report=term-missing   # with coverage
@@ -33,7 +33,7 @@ python e2e/test_e2e.py
 
 ## What is covered
 
-### Backend (210)
+### Backend (245)
 
 | File | Tests | Covers |
 |---|---|---|
@@ -47,6 +47,7 @@ python e2e/test_e2e.py
 | `test_predictor.py` | 37 | Contract shape, abstention rules, hostile input, batch consistency |
 | `test_api.py` | 51 | Every endpoint, validation, CORS, edge cases, OpenAPI |
 | `test_failure_modes.py` | 12 | 503 with no model, safe 500s, corrupt artefacts, transformer fallback |
+| `test_new_modules.py` | 35 | Experiment tracking, transfer evaluation, model comparison, label validation, EDA |
 
 Coverage is 75%. The uncovered remainder is almost entirely `train_transformer.py`, which needs `torch` — it is exercised only to the extent that it imports cleanly and fails with install instructions when torch is absent.
 

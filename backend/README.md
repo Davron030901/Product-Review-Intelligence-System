@@ -57,6 +57,34 @@ python -m src.training.train_transformer --epochs 3 --batch-size 16
 ```
 One shared DistilBERT encoder, two heads (softmax sentiment + sigmoid multi-label issues). The API picks it up automatically if `models/transformer/model.pt` exists, and falls back to the baseline if it fails to load. **Compare it against `docs/reports/baseline_report.json` before claiming it is better** — on short review text TF-IDF is a serious opponent.
 
+## The full pipeline
+
+```bash
+make data        # build the dataset
+make eda         # exploratory analysis -> docs/reports/eda_report.md
+make baseline    # train + evaluate, logs a tracked run
+make transfer    # leave-one-category-out transfer evaluation
+make compare     # baseline vs transformer, with a cost-aware verdict
+make test        # 245 tests
+```
+
+Every training run is recorded in `docs/reports/runs.jsonl` with its git commit,
+dataset hash, parameters and metrics, and `docs/reports/leaderboard.md` is
+regenerated from it. Two runs are only comparable when their dataset hash matches.
+
+### Validating the labels
+
+The issue labels are created by a keyword lexicon, so they need a human check:
+
+```bash
+make validate-sample    # writes docs/label_validation_sheet.csv
+# fill the `true_labels` column by hand, then:
+make validate-score     # writes docs/reports/label_validation.md
+```
+
+Until that is done, every issue metric measures agreement with a lexicon rather
+than with reality. See `docs/labeling.md`.
+
 ## Layout
 
 ```
